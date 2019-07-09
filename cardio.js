@@ -8,7 +8,9 @@
  * @param {number} length
  * @returns {string[]} filtered array
  */
-function filterByLength(people, length) {}
+function filterByLength(people, length) {
+  return people.filter(person => person.length > length);
+}
 
 /**
  * Returns an array of every nth person.
@@ -23,7 +25,10 @@ function filterByLength(people, length) {}
  *    everyNPerson(['Matt', 'Kim', 'Kanye', 'Obama', 'Hans'], 2)
  *    // → ['Matt', 'Kanye', 'Hans']
  */
-function everyNPerson(people, n) {}
+function everyNPerson(people, n) {
+  if (n === 0) return people;
+  return people.filter((_, i) => i % n === 0); 
+}
 
 /**
  * Returns an array where each entry is the person's intials
@@ -34,7 +39,14 @@ function everyNPerson(people, n) {}
  *    initials(['Kanye West', 'Barack Obama'])
  *    // → ['KW', 'BO']
  */
-function initials(people) {}
+function initials(people) {
+  return people.map(person => {
+    const names = person.split(' ');
+    const first = names[0][0].toUpperCase();
+    const last = names[1][0].toUpperCase();
+    return `${first}${last}`;
+  });
+}
 
 /**
  * Returns an array where every person is prepended with their position in the array
@@ -45,21 +57,33 @@ function initials(people) {}
  *    peopleWithPosition(['Kanye', 'Barack'])
  *    // → ['1. Kanye', '2. Barack']
  */
-function peopleWithPosition(people) {}
+function peopleWithPosition(people) {
+  return people.map((person, i) => `${i}: ${person}`);
+}
 
 /**
  * Sorts `people` by first name
  * @param {string[]} people
  * @returns {string[]} sorted array
  */
-function sortByFirstName(people) {}
+function sortByFirstName(people) {
+  const newPeople = [...people];
+  return newPeople.sort();
+}
 
 /**
  * Sorts `people` by last name
  * @param {string[]} people
  * @returns {string[]} sorted array
  */
-function sortByLastName(people) {}
+function sortByLastName(people) {
+  const newPeople = [...people];
+  return newPeople.sort((a, b) => {
+    const alast = a.split(" ")[1];
+    const blast = b.split(" ")[1];
+    return alast > blast ? 1 : -1;
+  });
+};
 
 /**
  * Counts all the characters in the people array (including spaces)
