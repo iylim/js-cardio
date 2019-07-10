@@ -93,6 +93,7 @@ function sortByLastName(people) {
 function countTotalCharacters(people) {
   const reducer = (accumulator, current) => accumulator + current.length;
   return people.reduce(reducer, 0);
+}
 
 /**
  * Returns `true` if everyone in `people` has `letter` in their name.
